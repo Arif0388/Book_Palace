@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "479179081526",
+    "project_id": "book-place-9fc3e",
+    "storage_bucket": "book-place-9fc3e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479179081526:android:6cd503c7f3ea7ada51d597",
+        "android_client_info": {
+          "package_name": "com.example.book_palacee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDn7ss74kOWiBwMVy7JT6hABlyEeuW5Is"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
