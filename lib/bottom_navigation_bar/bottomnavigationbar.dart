@@ -1,5 +1,6 @@
 import 'package:book_palacee/Booking_Page/booking_page.dart';
 import 'package:book_palacee/HomePage/HomePage.dart';
+import 'package:book_palacee/Hotel_Add_Page/hotel_add_page.dart';
 import 'package:book_palacee/Profile_Page/profile_page.dart';
 import 'package:book_palacee/Wallet_Page/wallet_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -15,9 +16,8 @@ class Bottomnavigationbar extends StatefulWidget {
 class _BottomnavigationbarState extends State<Bottomnavigationbar> {
 
   List pages = [
-    // const HotelAddPage(),
     const Homepage(),
-    const BookingPage(),
+    const HotelAddPage(),
     const WalletPage(),
     const ProfilePage(),
   ];
