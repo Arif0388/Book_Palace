@@ -1,4 +1,5 @@
 import 'package:book_palacee/Booking_Page/booking_page.dart';
+import 'package:book_palacee/Details_Page/details_page.dart';
 import 'package:book_palacee/HomePage/HomePage.dart';
 import 'package:book_palacee/Hotel_Add_Page/hotel_add_page.dart';
 import 'package:book_palacee/Profile_Page/profile_page.dart';

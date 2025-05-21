@@ -1,5 +1,7 @@
 
 import 'package:book_palacee/Controller/authcontroller.dart';
+import 'package:book_palacee/Controller/database_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +15,11 @@ class HotelAddPage extends StatefulWidget {
 
 class _HotelAddPageState extends State<HotelAddPage> {
   AuthController authController = Get.put(AuthController());
+  DatabaseController databaseController = Get.put(DatabaseController());
+  TextEditingController hotelNameController = TextEditingController();
+  TextEditingController hotelChargesController = TextEditingController();
+  TextEditingController hotelAddressController = TextEditingController();
+  TextEditingController hotelDescriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +71,7 @@ class _HotelAddPageState extends State<HotelAddPage> {
                        color:Colors.blueGrey[100],
                      ),
                      child:TextFormField(
+                       controller:hotelNameController,
                        style:Theme.of(context).textTheme.labelLarge,
                        decoration:InputDecoration(
                            hintText:'Enter Hotel Name',
@@ -84,6 +92,7 @@ class _HotelAddPageState extends State<HotelAddPage> {
                        color:Colors.blueGrey[100],
                      ),
                      child:TextFormField(
+                       controller:hotelChargesController,
                        style:Theme.of(context).textTheme.labelLarge,
                        decoration:InputDecoration(
                            hintText:'Enter Room Charges',
@@ -104,6 +113,7 @@ class _HotelAddPageState extends State<HotelAddPage> {
                        color:Colors.blueGrey[100],
                      ),
                      child:TextFormField(
+                       controller:hotelAddressController,
                        style:Theme.of(context).textTheme.labelLarge,
                        decoration:InputDecoration(
                            hintText:'Enter Hotel Address',
@@ -183,7 +193,7 @@ class _HotelAddPageState extends State<HotelAddPage> {
                    child: Container(
                      padding:const EdgeInsets.all(5),
                      width:MediaQuery.of(context).size.width,
-                     height:200,
+                     height:150,
                      decoration:BoxDecoration(
                        borderRadius:BorderRadius.circular(15),
                        color:Colors.white,
@@ -194,22 +204,29 @@ class _HotelAddPageState extends State<HotelAddPage> {
                            bottom:BorderSide(),
                          )
                      ),
-                     child:Column(
-                       children: [
-                         Text('sjbsj skjffbsfjbs jsbjsf bs jsvbjsvb  jbfsj ib moisbs iophsnis oishniosbnc ioshiosbn ihfiofbsivb sidsiobs sbnoisbs  n oshnfsiobvnsoi oisbviosvbsv sibisobsi sibnoisbsoc sibsoibsoi sbcis  vif heello my namr  is arif hussain ',style:GoogleFonts.aleo())
-                       ],
+                     child:TextFormField(
+                       controller:hotelDescriptionController,
+                       maxLines:5,
+                       decoration:const InputDecoration(
+                         border:InputBorder.none,
+                       ),
                      ),
                    ),
                  ),
-                 Container(
-                   width:200,
-                   height:50,
-                decoration:BoxDecoration(
-                  borderRadius:BorderRadius.circular(15),
-                  color:Colors.blueAccent,
-                ),
-                   child:Center(child:Text('Submit',style:GoogleFonts.aleo(fontSize:17,color:Colors.white)),),
-                 ),
+                Obx(() =>  InkWell(
+                    onTap:()async{
+                      databaseController.addHotels(hotelName: hotelNameController, hotelAddress:hotelAddressController, hotelPrice: hotelChargesController, hotelDesc:hotelDescriptionController);
+                    },
+                    child:Container(
+                      width:200,
+                      height:50,
+                      decoration:BoxDecoration(
+                        borderRadius:BorderRadius.circular(15),
+                        color:Colors.blueAccent,
+                      ),
+                      child:Center(child: authController.isLoading.value? const CupertinoActivityIndicator(color:Colors.white,radius:12,) : Text('Submit',style:GoogleFonts.aleo(fontSize:17,color:Colors.white)),),
+                    )
+                )),
                ],
              ),
            ),
