@@ -1,6 +1,9 @@
 
+import 'package:book_palacee/Controller/authcontroller.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -8,7 +11,9 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String profileImage = 'https://cdn-icons-png.flaticon.com/128/17948/17948614.png';
     User? user = FirebaseAuth.instance.currentUser;
+    AuthController authController = Get.put(AuthController());
     return  Scaffold(
       body:Padding(
         padding: const EdgeInsets.all(30.0),
@@ -22,8 +27,7 @@ class ProfilePage extends StatelessWidget {
               borderRadius:BorderRadius.circular(15),
               child: CircleAvatar(
                radius:70,
-               child:Image.asset('assets/Images/1.jpg',fit:BoxFit.cover,),
-                         ),
+               child:CachedNetworkImage(imageUrl:profileImage)),
             ),
             const SizedBox(height:15),
             Card(
@@ -44,14 +48,19 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height:15),
-            Card(
-              elevation:2,
-              child: ListTile(
-                leading:const Icon(Icons.logout,color:Colors.greenAccent,size:30,),
-               title:Text('LogOut',style:GoogleFonts.aleo()),
-                trailing:const Icon(Icons.forward,color:Colors.greenAccent,),
-              ),
-            ),
+                InkWell(
+                  onTap:()async{
+                    await authController.signOut();
+                  },
+                  child: Card(
+                    elevation:2,
+                    child: ListTile(
+                      leading:const Icon(Icons.logout,color:Colors.greenAccent,size:30,),
+                      title:Text('LogOut',style:GoogleFonts.aleo()),
+                      trailing:const Icon(Icons.forward,color:Colors.greenAccent,),
+                    ),
+                  ),
+                ),
             const SizedBox(height:15),
             Card(
               elevation:2,
